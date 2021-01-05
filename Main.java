@@ -4,8 +4,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		int arreglo[][] = {{4,5},
-							{1,6},
-							{3,2}};
+				   {1,6},
+			 	   {3,2}};
 		
 		int contador = 0, posicion = 0;
 		
@@ -35,6 +35,7 @@ public class Main {
 		}
 		
 		int izq = 0, der = arregloAuxiliar.length-1;
+		
 		System.out.println(" ");
 		System.out.println("Arreglo auxiliar");
 		for (int i = 0; i < arregloAuxiliar.length; i++) {
@@ -63,7 +64,7 @@ public class Main {
 
 		int pivote = arregloAuxiliar[izq], aux, i = izq, d = der;
 		
-		int[]valoresIyJ = new int[4];
+		int[]valoresIyJ = new int[4];//los primeros 2 elementos serán el valor de "i" (o de "izq" según sea el caso) y los otros 2 serán los de "d"
 		
 		while(i<d) {
 			while(arregloAuxiliar[i] <= pivote && i<d)
@@ -73,6 +74,7 @@ public class Main {
 					
 			if(i < d) {
 				valoresIyJ = conseguirPosicionesMatriz(arreglo, arregloAuxiliar, i, d);
+				
 				aux = arregloAuxiliar[i];
 
 				// cambio en arreglo
@@ -82,22 +84,21 @@ public class Main {
 				
 				//cambio en arreglo
 				arregloAuxiliar[d] = aux;
-				
 				//cambio en matriz
 				arreglo[valoresIyJ[2]][valoresIyJ[3]] = aux;
 			}
 		}
 		
+		//a diferencia del que está en el if, acá se manda como parámetro "izq" en vez de "i"
 		valoresIyJ = conseguirPosicionesMatriz(arreglo, arregloAuxiliar, izq, d);
 		
 		//cambio en arreglo
 		arregloAuxiliar[izq] = arregloAuxiliar[d];
-		
 		//cambio en matriz
 		arreglo[valoresIyJ[0]][valoresIyJ[1]] = arreglo[valoresIyJ[2]][valoresIyJ[3]];
 		
+		//cambio en matriz
 		arregloAuxiliar[d] = pivote;
-		
 		//cambio en matriz
 		arreglo[valoresIyJ[2]][valoresIyJ[3]] = pivote;
 						
